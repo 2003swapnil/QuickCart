@@ -6,8 +6,7 @@ import user from "@/models/user";
 export const inngest = new Inngest({ id: "quickcart-next" });
 
 // inngest function to save user data to database
-
-export const syncUserCreation = inngest.createfunction(
+export const syncUserCreation = inngest.createFunction(
     {
         id:'sync-user-from-clerk'
     },
@@ -24,11 +23,10 @@ export const syncUserCreation = inngest.createfunction(
         await connectDB();
         await user.create(userData)
     }
+);
 
-)
 // inngest function to update user data in database
-
-export const syncUserUpdate = inngest.createfunction(
+export const syncUserUpdate = inngest.createFunction(
     {
         id: 'user-update-from-clerk'
     },
@@ -45,8 +43,9 @@ export const syncUserUpdate = inngest.createfunction(
         await user.updateOne({ _id: id }, { $set: userData });
     }
 );
+
 // inngest function to delete user data from database
-export const syncUserDeletion = inngest.createfunction(
+export const syncUserDeletion = inngest.createFunction(
     {
         id: 'user-deletion-from-clerk'
     },
